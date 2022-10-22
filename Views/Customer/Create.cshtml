@@ -1,0 +1,83 @@
+﻿@model WebApp_MVC.Models.CustomerViewModel
+@using WebApp_MVC.Models;
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm("Submit","Customer",FormMethod.Post)) {
+        
+<div class="form-horizontal">
+    <h4>CustomerModel</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        <i>   @Html.LabelFor(model => model.customer.CustomerCode, htmlAttributes: new { @class = "control-label col-md-2" })</i>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.customer.CustomerCode, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.customer.CustomerCode, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        <i>   @Html.LabelFor(model => model.customer.CustomerName, htmlAttributes: new { @class = "control-label col-md-2" })</i>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.customer.CustomerName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.customer.CustomerName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <i>
+            @Html.LabelFor(model => model.customer.Salary, htmlAttributes: new { @class = "control-label col-md-2" })
+        </i>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.customer.Salary, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.customer.Salary, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Customre Code</th>
+            <th scope="col">Customre Name</th>
+            <th scope="col">Salary</th>
+
+        </tr>
+    </thead>
+    <tbody>
+     
+        @foreach (CustomerModel cust in Model.customers)
+        {
+        <tr>
+            <th scope="row">#</th>
+            <td>@cust.CustomerCode</td>
+            <td>@cust.CustomerName</td>
+            <td>@cust.Salary</td>
+        </tr>
+        }
+        </tbody>
+
+</table>
+<div>
+    @Html.ActionLink("Back to List", "Create")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
