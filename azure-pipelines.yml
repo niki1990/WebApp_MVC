@@ -6,8 +6,7 @@
 trigger:
 - master
 
-pool:
-  vmImage: myselfhostedAgent
+pool: myselfhostedAgent
 
 variables:
   solution: '**/*.sln'
